@@ -19,7 +19,7 @@
 // classe bilan
 require 'bilan.class.php'; 
 
-// paramètres
+// paramètres àa changer
 $bilan_energetique_params = array(
     'path_src' => '/path/to/src/',
     'path_img' => '/path/to/img/',
@@ -68,15 +68,22 @@ if (!empty($_POST['submit'])) {
         }
     }
 }
-
-$style_more = array('style.css');
-$code_source = true;
-$title_more = 'Génération en ligne de graphique de bilans énergétiques';
-include '../header.inc.php';
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr_FR" lang="fr_FR">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <title>Génération de graphiques de bilan énergétique</title>
+    <style type="text/css">
+        body {
+            font-family: Verdana, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
     <div id="bilan">
 
-        <h1 class="titre">Générer vos graphiques de bilan énergétique</h1>
+        <h1 class="titre">Génération de graphiques de bilan énergétique</h1>
 
         <?php if(empty($error) && !empty($_POST['submit'])) { ?>
 
@@ -88,7 +95,7 @@ include '../header.inc.php';
             <br /><span class="sstitre">pour le chauffage, la production d'eau chaude sanitaire et le refroidissement</span></h2>
           <h3>Consommation conventionnelle</h3>
           <div class="graphique">
-            <img src="./img/<?php echo $bilan_energetique->generateImage('conso_energie', 'conso_energie-'.$img_name.'.jpg', (int)$_POST['conso_energie']); ?>" alt="Graphique de la consommation conventionnelle" />
+            <img src="./src/<?php echo $bilan_energetique->generateImage('conso_energie', 'conso_energie-'.$img_name.'.jpg', (int)$_POST['conso_energie']); ?>" alt="Graphique de la consommation conventionnelle" />
           </div>
         </div>
 
@@ -103,7 +110,6 @@ include '../header.inc.php';
 
         <div class="spacer">&nbsp;</div>
         <?php } ?>
-
 
         <h2>Testez ! Générez vos images de bilan !</h2>
 
@@ -131,11 +137,6 @@ include '../header.inc.php';
            
         </form>
 
-        <div id="footer_bilan">
-            Cette page est placée sous Licence <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/">
-                <img alt="Creative Commons License" style="border-width: 0pt; vertical-align: middle;" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/80x15.png" /></a> 
-        </div>
-
     </div>
-
-<?php include '../footer.inc.php'; ?>
+</body>
+</html>
